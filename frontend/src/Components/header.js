@@ -11,11 +11,13 @@ const Header = () => {
       <Link to="/">Accueil</Link>
       {user ? (
         <>
+          <Link to="/Books">Books</Link>
           <Link to="/cart">Panier</Link>
           <button onClick={logout}>Déconnexion</button>
         </>
       ) : (
         <Link to="/login">Connexion</Link>
+      
       )}
     </header>
   );

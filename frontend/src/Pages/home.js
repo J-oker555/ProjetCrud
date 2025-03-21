@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import "../index.css";
+import "../styles/home.css";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -20,13 +22,13 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="books-container">
       {books.map((book) => (
-        <div key={book._id}>
-          <img src={book.image} alt={book.title} />
-          <h3>{book.title}</h3>
-          <p>{book.price}€</p>
-          <button onClick={() => addToCart(book._id)}>Ajouter au panier</button>
+        <div className="book-card" key={book._id}>
+          <img className="book-image" src={book.image} alt={book.title} />
+          <h3 className="book-title">{book.title}</h3>
+          <p className="book-price">{book.price}€</p>
+          <button className="add-to-cart" onClick={() => addToCart(book._id)}>Ajouter au panier</button>
         </div>
       ))}
     </div>

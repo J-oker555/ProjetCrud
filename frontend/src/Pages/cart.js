@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import "../styles/cart.css"; // Assure-toi de créer ce fichier
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -18,15 +19,24 @@ const Cart = () => {
   };
 
   return (
-    <div>
-      <h2>Votre Panier</h2>
-      {cart.length === 0 ? <p>Votre panier est vide</p> : cart.map((item) => (
-        <div key={item.book._id}>
-          <h3>{item.book.title}</h3>
-          <p>Quantité: {item.quantity}</p>
-          <button onClick={() => removeFromCart(item.book._id)}>Supprimer</button>
+    <div className="cart-container">
+      <h2>🛒 Votre Panier</h2>
+      {cart.length === 0 ? (
+        <p className="empty-cart">Votre panier est vide</p>
+      ) : (
+        <div className="cart-items">
+          {cart.map((item) => (
+            <div className="cart-item" key={item.book._id}>
+              <img className="cart-image" src={item.book.image} alt={item.book.title} />
+              <div className="cart-info">
+                <h3>{item.book.title}</h3>
+                <p>Quantité: {item.quantity}</p>
+                <button className="remove-btn" onClick={() => removeFromCart(item.book._id)}>🗑 Supprimer</button>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };
